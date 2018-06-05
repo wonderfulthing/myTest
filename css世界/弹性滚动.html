@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹性滚动IScroll</title>
+    <style>
+        .wrap {
+            margin: 100px auto;
+            width: 500px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        .wrap>ul {
+            padding: 0;
+            position: absolute;
+            white-space: nowrap;
+        }
+        .wrap li {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap" class="wrap">
+        <ul>
+            <li>
+                <img src="../img/0.jpg" alt="">
+                <img src="../img/0.jpg" alt="">
+                <img src="../img/0.jpg" alt="">
+                <img src="../img/0.jpg" alt="">
+                <img src="../img/0.jpg" alt="">
+            </li>
+
+        </ul>
+    </div>
+    <script src="../libs//iscroll.js"></script>
+    <script>
+        new IScroll('#wrap', {
+            scrollbars: true,
+            scrollX: true,
+            scrollY: false
+        });
+        var a = 10;
+</script>
+
+
+</body>
+
+</html>

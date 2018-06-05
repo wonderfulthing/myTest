@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            height: 355px;
+            border: 1px solid #000000;
+        }
+
+        .navigator_box {
+            position: relative;
+            height: 70px;
+        }
+
+        .navigator_box .navigator_nav {
+            width: 100%;
+        }
+
+        .navigator_box .navigator_nav ul {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background-color: #DADADA;
+        }
+
+        .navigator_box .navigator_nav li {
+            list-style-type: none;
+            float: left;
+            height: 70px;
+            line-height: 70px;
+            width: 150px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .navigator_box .navigator_nav li.active {
+            background-color: greenyellow;
+            color: #fff;
+        }
+
+        .info_one {
+            height: 300px;
+            border: 1px solid blue;
+        }
+
+        .info_two {
+            height: 1000px;
+            border: 1px solid red;
+            margin-top: 20px;
+        }
+
+        .info_three {
+            height: 500px;
+            border: 1px solid #ADFF2F;
+            margin-top: 20px;
+        }
+
+        .info_fore {
+            height: 500px;
+            border: 1px solid #F4A460;
+            margin-top: 20px;
+        }
+
+        .nav_fixed {
+            position: fixed;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div class="navigator_box">
+        <div class="navigator_nav">
+            <ul>
+                <li id="oneBar" class="active" barclass="info_one">信息一</li>
+                <li id="twoBar" barclass="info_two">信息二</li>
+                <li id="threeBar" barclass="info_three">信息三</li>
+                <li id="foreBar" barclass="info_fore">信息四</li>
+            </ul>
+        </div>
+    </div>
+    <div class="info_one">
+        <div>信息一</div>
+    </div>
+    <div class="info_two">
+        <div>信息二</div>
+    </div>
+    <div class="info_three">
+        <div>信息三</div>
+    </div>
+    <div class="info_fore">
+        <div>信息四</div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            var ul_top, info_one, info_two, info_three, info_fore;
+            initScroll();
+            function initScroll() {
+                // 导航条距离顶部高度
+                ul_top = $('.navigator_box').offset().top;
+                // 信息一距离顶部高度
+                info_one = $('.info_one').offset().top;
+                // 信息二距离顶部高度
+                info_two = $('.info_two').offset().top;
+                // 信息三距离顶部高度
+                info_three = $('.info_three').offset().top;
+                // 信息四距离顶部高度
+                info_fore = $('.info_fore').offset().top;
+                // 添加滚动监听
+                window.onscroll = scrollEvent
+            };
+            /**
+             * 滚动监听
+             */
+            function scrollEvent() {
+                if (document.documentElement && document.documentElement.scrollTop) {//若要适配ie
+                    targetTop = document.documentElement.scrollTop;
+                } else if (document.body) {
+                    targetTop = document.body.scrollTop;
+                }
+
+                if (targetTop >= ul_top) {
+                    $('.navigator_nav').addClass('nav_fixed');
+                } else {
+                    $('.navigator_nav').removeClass('nav_fixed');
+                }
+                // 此处代码实现导航条的联动样式
+                // 70是导航条的高度，讲道理应该用js来获取，可是我懒啊，同时也有可能并不是导航条的高度，
+                // 这与你的页面布局有很大关系，如果你理解了这里的代码的原理，你就可以随心所欲的调节他的大小来实现自己的功能
+                if (targetTop >= (info_one - 70) && targetTop < info_two - 70) {
+                    $('.navigator_nav').find('li.active').removeClass("active");
+                    $("#oneBar").addClass("active");
+                } else if (targetTop >= info_two - 70 && targetTop < info_three - 70) {
+                    $('.navigator_nav').find('li.active').removeClass("active");
+                    $("#twoBar").addClass("active");
+                } else if (targetTop >= info_three - 70 && targetTop < info_fore - 70) {
+                    $('.navigator_nav').find('li.active').removeClass("active");
+                    $("#threeBar").addClass("active");
+                } else if (targetTop >= info_fore - 70) {
+                    $('.navigator_nav').find('li.active').removeClass("active");
+                    $("#foreBar").addClass("active");
+                }
+            };
+            // 点击导航条后滑动到相应的位置
+            $(".navigator_nav").on('click', 'li', function () {
+                var barclass = $(this).attr('barclass');
+                var top = document.getElementsByClassName(barclass)[0].offsetTop - 70;
+                console.log(top)
+                $("html,body").animate({
+                    scrollTop: top
+                }, 500);
+            });
+        });</script>
+</body>
+
+</html>

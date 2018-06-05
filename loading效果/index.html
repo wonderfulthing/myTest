@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loading效果</title>
+    <script>
+       
+    </script>
+</head>
+<div id="loading">
+    <img src="fruits-apple.gif" alt="">
+</div>
+
+<body>
+
+
+
+</body>
+<script>
+    // window.onload = function(){
+    //     var div = document.querySelector('#loading')
+    //     console.log(div.children)
+    //     // div.style.display = 'none'
+    //     var http = new XMLHttpRequest();
+    //     console.log(http)
+    // 用jquery的$(document).ajaxStart可以判断ajax请求是否发出;
+    // 若是用原生js需要在XMLhttpRequest原型中添加方法进行确定状态，方法较为复杂，未尝试.
+    // }
+    window.onload = initPage();   
+        function initPage() {
+        var objLoading = document.getElementById("loading");
+        console.log(objLoading)
+        if (objLoading != null) {
+            objLoading.style.display = "none";
+        }
+    } 
+</script>
+
+</html>

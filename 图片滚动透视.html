@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>background-attachment</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        div.container{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        div>div{
+            /* margin-top: 10px; */
+            width: 100%;
+            min-height: 100vh;
+            background-color: red;
+        }
+        /* background-size:cover 是 将当前元素的max(height,width)中设为背景图片的最小宽/高,进行覆盖处理 */
+        .one,.two,.three,.four{
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: cover;
+            /*background-attachment: fixed; 是将背景相对于当前窗口进行固定，不能拖动  */
+            background-attachment: fixed;
+            background-position: 0 0;
+        }
+        .one{
+            background-image: url('img/0.jpg');
+        }
+        .two{
+            background-image: url('img/1.jpg');
+        }
+        .three{
+            background-image: url('img/2.jpg');
+        }
+        .four{
+            background-image: url('img/3.jpg');
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+        <div class="four"></div>
+        <div class="05"></div>
+        <div class="06"></div>
+        <div class="07"></div>
+        <div class="08"></div>
+        <div class="09"></div>
+        <div class="10"></div>
+    </div>
+    <script>
+        
+    </script>
+</body>
+</html>

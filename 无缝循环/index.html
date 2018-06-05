@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>无缝循环</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="container">
+        <ul id="content">
+            <li>
+                <img src="imgs/0.jpg" alt="">
+            </li>
+            <li>
+                <img src="imgs/1.jpg" alt="">
+            </li>
+            <li>
+                <img src="imgs/2.jpg" alt="">
+            </li>
+            <li>
+                <img src="imgs/3.jpg" alt="">
+            </li>
+            <li>
+                <img src="imgs/4.jpg" alt="">
+            </li>
+            <li>
+                <img src="imgs/5.jpg" alt="">
+            </li>
+            <li>
+                <img src="imgs/6.jpg" alt="">
+            </li>
+            <li>
+                <img src="imgs/7.jpg" alt="">
+            </li>
+            <li>
+                <img src="imgs/8.jpg" alt="">
+            </li>
+        </ul>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        window.onload = function () {
+            var segmentWidth = 0;
+            $('#container #content li').each(function () {
+                console.log($(this).outerWidth(true))
+                segmentWidth += $(this).outerWidth(true)
+            })
+            $('#container #content li').clone().appendTo($('#container #content'))
+            run(6000);
+
+            function run(interval) {
+                $('#container #content').animate({
+                    'left': -segmentWidth
+                }, interval, 'linear', function () {
+                    $('#container #content').css('left', 0);
+                    run(6000)
+                })
+            }
+            $('#container').mouseenter(function () {
+                $('#container #content').stop()
+            }).mouseleave(function () {
+                var passedCourse = -parseInt($('#container #content').css('left'))
+                var time = 6000 * (1 - passedCourse / segmentWidth);
+                run(time);
+            })
+        }
+    </script>
+</body>
+
+</html>

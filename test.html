@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+	<meta charset="utf-8" />
+	<title>兄弟选择符 (E~F)_CSS参考手册_web前端开发参考手册系列</title>
+	<style>
+		/* flex不具有继承性，只对下一级的目标有效果 */
+		.test {
+			/* display: flex; */
+			cursor: url(./img/123.ico),auto;
+		}
+		.div-1{
+			width: 400px;
+			height: 500px;
+			margin: 100px auto;
+			background-color: red;
+			position: relative;
+		}
+		/* 另一种利用position进行居中的方法 */
+		.inner{
+			width: 150px;
+			height: 150px;
+			background-color: green;
+			/* position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto; */
+			display: table-cell;
+
+		}
+		/* body{
+		background-color: silver;
+	}
+	.show{
+		margin: 0 auto;
+		width: 10px;
+		height: 20px;
+	}
+	.show:after{
+		content:'';
+		position: absolute;
+		top: 0;
+		left: center;
+		margin: 100px auto;
+		width: 100px;
+		height: 100px;
+		background-image: url('./img/like.png');
+		background-repeat: no-repeat;
+		background-position: 0px 0px;
+		animation:  0.5s 1 forwards steps(19);
+		overflow: hidden;
+	} */
+
+		/* .show img{
+		animation: like 2s ease-in-out 1 ;
+		position: relative;
+	} */
+
+		/* @keyframes like {
+		to{
+			background-position-x: -1900px;
+		}
+	} */
+	</style>
+</head>
+
+<body>
+	<div class="test" onclick="test()">
+		<!-- <div class="show" onclick="test()">
+	</div> -->
+		<div class="div-1">
+			<div class="inner">
+
+			</div>
+		</div>
+		<!-- <div class="div-1">
+			我是div1
+			<div class="div-1-1">
+				我是div-1-1
+			</div>
+			<div class="div-1-2">
+				我是div-1-2
+			</div>
+			<div class="div-1-3">
+				我是div-1-3
+			</div>
+		</div>
+		<div class="div-2">
+			我是div2
+		</div>
+		<div class="div-3">
+			我是div3
+		</div> -->
+	</div>
+	<script src="libs/jquery.js"></script>
+	<script src="index.js"></script>
+	<script>
+		// "use strict"
+		// function test() {  
+		// 	console.time('开始')
+		// 	// document.querySelector('.show').style.animationName = "none"
+		// 	document.querySelector('.show').setAttribute('data-name','like');
+		// 	var div = document.querySelector('div')
+		// 	document.defaultView.getComputedStyle(div,":after").animationName="like"
+		// 	console.timeEnd('开始')
+		// 	console.time('like')
+		// 	setTimeout(() => {
+		// 		// document.querySelector('.show').style.animationName = "like"
+		// 	}, 1);
+		// 	console.timeEnd('like')
+		// }
+		function test(event) {
+			console.dir($)
+		}
+
+	</script>
+</body>
+
+</html>

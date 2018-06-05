@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>inline-table</title>
+    <style>
+        .inline-table {
+            display: inline-table;
+            /* width: 128px; */
+            margin-left: 10px;
+            border: 1px solid silver;
+        }
+        .inline-table>p{
+            display: table-cell;
+        }
+    </style>
+</head>
+
+<body>
+    <span>和文字一样高度的表格</span>
+    <div class="inline-table">
+        <p>第一列</p>
+        <p>第二列</p>
+        <p>第三列</p>
+        <p>第四列</p>
+    </div>
+    <script>
+    </script>
+</body>
+
+</html>

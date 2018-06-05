@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>video</title>
+    <style>
+        body,html,*{
+            padding: 0;
+            margin: 0;
+        }
+        .video{
+            height: 30vh;
+            width: 100vw;
+            padding: 0;
+            margin-top: 200px;
+        }
+        .iframe{
+            width: 100vw;
+            height: 40vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video">
+        <video src="./f0200ivsue9.p201.1.mp4"
+            controls="controls" autoplay="autoplay" width="100%;" height="100%;" preload="auto"></video>
+    </div>
+    <div class="iframe">
+        <iframe src="./canvas毛笔字.html" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+    <!-- frameborder:周围边框 -->
+    <!-- scrolling:是否显示滚动条 -->
+    <!-- seamless:像包含文档的一部分 -->
+    <!-- srcdoc:在页面中显示的HTML内容 -->
+    <script>
+        var myvideo = document.querySelector('video')
+        console.log(myvideo)
+    </script>
+</body>
+
+</html>

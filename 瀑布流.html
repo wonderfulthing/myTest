@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>瀑布流</title>
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+        }
+        #waterfall_ul{
+            position: relative;
+            width: 100%;
+            height: 100%
+        }
+        #waterfall_ul>div {
+            background: #ccc;
+            width: 200px;
+            position: absolute;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="waterfall_ul">
+
+    </div>
+
+
+    <script type="text/javascript">
+        createDiv()
+        function createDiv() {
+            for (var i = 0; i < 50; i++) {
+                var div = document.createElement('div');
+                var rnd = Math.floor(Math.random() * 300 + 50) //div的高度在50到350之间
+                div.style.height = rnd + "px";
+                div.innerHTML = i;
+                waterfall = document.querySelector('#waterfall_ul')
+                console.log(waterfall)
+                waterfall.appendChild(div);
+            };
+            change()
+        }
+
+        function change() {
+            var aDiv = document.getElementsByTagName('div');
+            var windowCW = document.documentElement.clientWidth; //窗口视口的宽度
+
+            var n = Math.floor(windowCW / 210); //一行能容纳多少个div，并向下取整
+            if (n <= 0) {
+                return
+            };
+            // alert(n);
+            var t = 0;
+            var center = (windowCW - n * 210) / 2; //图片整体居中，两边要有边距
+            // alert(center)
+            var arrH = []; //定义一个数组存放div的高度
+            for (var i = 0; i < aDiv.length; i++) {
+                var j = i % n;
+                // 将整个屏幕分成n列，对每一列进行判断
+                if (arrH.length == n) { //一行排满n个后开始参差不齐的排放  
+                    var min = findMin(arrH); //从最“矮”的排起，可以从下图的序号中看得出来，下一行中序号是从矮到高排列的
+                    // min是最矮的那个在这一行的序号，
+                    aDiv[i].style.left = center + min * 210 + "px";
+                    aDiv[i].style.top = arrH[min] + 10 + "px";
+                    arrH[min] += aDiv[i].offsetHeight + 10;
+                    // alert(min);
+                } else {
+                    arrH[j] = aDiv[i].offsetHeight;//j取值为0-每行最大值个数-1 aDiv是刚开始的div到最后的div的序号
+                    aDiv[i].style.left = center + 210 * j  + "px";
+                    aDiv[i].style.top = 10;
+                }
+
+            };
+        }
+        window.onresize = function () { //窗口改变也调用函数  
+            change();
+        }
+        window.onscroll = function () {
+            // 页面总高度
+            var bodyHeight = document.documentElement.offsetHeight;
+            // 可视区高度
+            var windowHeight = document.documentElement.clientHeight;
+            //滚动条的高度    
+            var srcollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var srcollH = document.body.scrollHeight;
+            // alert(srcollH);
+            // scrollTop+windowHeight>=scrollH - 20 是为了
+            if (srcollTop + windowHeight >= srcollH - 20) {
+                createDiv();
+            };
+        }
+
+        function findMin(arr) {
+            var m = 0;
+            for (var i = 0; i < arr.length; i++) {
+                m = Math.min(arr[m], arr[i]) == arr[m] ? m : i;
+            }
+            return m;
+        }
+    </script>
+    <script>
+        //瀑布流
+        // var fall = document.getElementById("waterfall_ul");
+        // createLi();
+
+        // function createLi() {
+        //     for (var i = 0; i < 6; i++) {
+        //         var li = document.createElement('li');
+        //         var img = document.createElement('img');
+        //         var div = document.createElement('div');
+        //         var span = document.createElement('span');
+        //         // li.style.width="210px";
+        //         fall.appendChild(li);
+        //         li.appendChild(img);
+        //         li.appendChild(div);
+        //         div.appendChild(span);
+        //         span.innerHTML = "我是文字";
+        //         div.setAttribute('class', "cover");
+        //         img.setAttribute("src", "img/" + i + ".jpg");
+        //     };
+        // }
+
+        function change() {
+            var lis = fall.getElementsByTagName("li");
+            var lis_W = lis[0].offsetWidth;
+            // alert(lis_W);
+            var imgs = fall.getElementsByTagName('img');
+            // alert(imgs.length);
+            var windowCW = document.documentElement.offsetWidth;
+            var n = Math.floor(windowCW / lis_W);
+
+            var center = (windowCW - n * lis_W - (n - 1) * 10) / 2;
+            var arrH = [];
+            for (var i = 0; i < lis.length; i++) {
+                var j = i % n;
+                // alert(arrH);
+                if (arrH.length == n) {
+                    var min = findMin(arrH);
+                    lis[i].style.left = center + min * (lis_W + 10) + "px";
+                    lis[i].style.top = arrH[min] + 10 + "px";
+                    arrH[min] += lis[i].offsetHeight + 10;
+
+                    var k = 0;
+                    for (var b = 0; b < n; b++) {
+                        k = Math.max(arrH[k], arrH[b]) == arrH[k] ? k : b;
+                    }
+                    fall.style.height = arrH[k] + 'px';
+                    // alert(min);
+                } else {
+                    arrH[j] = imgs[i].offsetHeight;
+                    lis[i].style.left = center + lis_W * j + 10 * j + "px";
+                    lis[i].style.top = 0;
+                }
+            }
+
+            function findMin(arr) {
+                var m = 0;
+                for (var i = 0; i < arr.length; i++) {
+                    m = Math.min(arr[m], arr[i]) == arr[m] ? m : i;
+                }
+                return m;
+            }
+        }
+        window.onload = function () {
+            change();
+        }
+        window.onresize = function () {
+            change();
+        }
+        //点击查看图片大图
+        $(document).ready(function () {
+            // $(".cover").click(function () {
+            //     // console.log(this.previousSibling.src);
+            //     var cover_img = document.getElementById("cover_img");
+            //     var big_cover = document.getElementById('big_cover');
+            //     cover_img.setAttribute("src", this.previousSibling.src);
+            //     big_cover.style.display = "block";
+            // });
+            // $("#x").click(function () {
+            //     big_cover.style.display = "none";
+            // });
+            // $(".cover").hover(function () {
+            //     /* Stuff to do when the mouse enters the element */
+            //     $(this).animate({
+            //         opacity: 1
+            //     });
+            // }, function () {
+            //     /* Stuff to do when the mouse leaves the element */
+            //     $(this).animate({
+            //         opacity: 0
+            //     });
+            // });
+        });
+    </script>
+</body>
+
+</html>

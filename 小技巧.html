@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width,user-scable=no,initial-scale=1.0"> -->
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <!--指定双核浏览器优先使用哪种内核-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 启用 WebApp 全屏模式 -->
+    <title>试一试</title>
+    <link rel="shortcut icon" href="./img/0.jpg">
+    <style>
+        /* 禁止文字被选中 */
+
+        body {
+            user-select: none;
+        }
+
+        /* 改变选中文字的颜色，只有css3支持 */
+
+        ::selection {
+            color: white;
+            background-color: red;
+        }
+        .flex{
+            /* flex只会针对当前的块 */
+            /* width: 700px;
+            height: 700px; */
+            background-color: red;
+            /* display: flex;
+            flex-wrap: wrap; */
+        }
+        .flex:after{
+            content: '';
+            clear: both;
+            /* 这里的display:block是清除浮动之后显示元素的关键 */
+            display: block;
+        }
+        .flex div{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            margin: 10px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>获取信息12313551</h1>
+    <div contenteditable="true">我有一剑 </div>
+    <p translate="yes">no , you are bittch </p>
+    <input id="myCar" list="cars" />
+    <datalist id="cars">
+        <option value="BMW">
+            <option value="Ford">
+                <option value="Volvo">
+    </datalist>
+    <section class="flex">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+    <footer>
+        <span>我我我我我</span>
+    </footer>
+    <!-- <iframe src="http://www.baidu.com" height="300px" marginwidth="auto" width="1000px">
+        <p>浏览器不支持此标签</p>
+    </iframe> -->
+    <!-- <script src="jquery.js"></script> -->
+    <script src="skill.js"></script>
+</body>
+
+</html>

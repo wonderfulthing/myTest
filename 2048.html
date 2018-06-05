@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title> 2048 </title>
+    <style type="text/css">
+        #box {
+            width: 440px;
+            height: 440px;
+            background-color: #666666;
+            border: 5px solid #993300;
+            border-radius: 20px;
+            padding: 10px;
+            margin: 20px auto;
+        }
+
+        #box div {
+            float: left;
+            width: 90px;
+            height: 90px;
+            color: #ffffff;
+            background-color: #cc9900;
+            border-radius: 10px;
+            margin: 10px;
+            text-align: center;
+            font-weight: bold;
+            font: 30px/90px "Lucida Grande", "Trebuchet MS", sans-serif;
+        }
+
+        #box .nuundefined {
+            font-size: 0px;
+            background-color: #999999;
+        }
+
+        #box .nu2 {
+            font-size: 70px;
+            background-color: #9999FF;
+        }
+
+        #box .nu4 {
+            font-size: 70px;
+            background-color: #6666FF;
+        }
+
+        #box .nu8 {
+            font-size: 70px;
+            background-color: #0033FF;
+        }
+
+        #box .nu16 {
+            font-size: 60px;
+            background-color: #00CC99;
+        }
+
+        #box .nu32 {
+            font-size: 60px;
+            background-color: #339999;
+        }
+
+        #box .nu64 {
+            font-size: 60px;
+            background-color: #336633;
+        }
+
+        #box .nu128 {
+            font-size: 50px;
+            background-color: #FF66CC;
+        }
+
+        #box .nu256 {
+            font-size: 50px;
+            background-color: #FF0000;
+        }
+
+        #box .nu512 {
+            font-size: 50px;
+            background-color: #990000;
+        }
+
+        #box .nu1024 {
+            font-size: 40px;
+            background-color: #FF9900;
+        }
+
+        #box .nu2048 {
+            font-size: 40px;
+            background-color: #FFcc00;
+        }
+
+        #box .nu4096 {
+            font-size: 40px;
+            background-color: #FFff00;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script type="text/javascript">
+        var arr;
+
+        function update() {
+            var n, str = "";
+            while (arr[n = Math.random() * 16 >> 0]);
+            arr[n] = Math.random() * 2 + 1 << 1;
+            for (var i = 0; i < arr.length; i++)
+                str += "<div class='nu" + arr[i] + "'>" + arr[i] + "</div>";
+            document.getElementById("box").innerHTML = str;
+        }
+
+        function move(ts, tp, tr) {
+            var moveflag = false;
+            for (var k = 0; k < 4; k++) {
+                var to = ts + k * tp;
+                for (var j = 1; j < 4; j++) {
+                    var i = ts + k * tp + j * tr;
+                    if (!arr[i]) continue;
+                    if (!arr[to]) {
+                        arr[to] = arr[i];
+                    } else if (arr[i] == arr[to]) {
+                        arr[to] <<= 1;
+                        to += tr;
+                    } else {
+                        to += tr;
+                        if (to == i) continue;
+                        arr[to] = arr[i];
+                    }
+                    delete arr[i];
+                    moveflag = true;
+                }
+            }
+            if (moveflag) {
+                update();
+                isover();
+            }
+        }
+
+        function isover() {
+            for (var i = 0; i < 16; i++) {
+                var v = arr[i];
+                if (!v || i % 4 != 0 && v == arr[i - 1] || i % 4 != 3 && v == arr[i + 1] || i > 3 && v == arr[i - 4] ||
+                    i < 12 && v == arr[i + 4]) return;
+            }
+            setTimeout('alert("game over");start();', 200);
+        }
+        document.onkeydown = function (e) {
+            switch ((e || event).keyCode) {
+                case 37:
+                    move(0, 4, 1);
+                    break; //左  
+                case 39:
+                    move(3, 4, -1);
+                    break; //右  
+                case 38:
+                    move(0, 1, 4);
+                    break; //上  
+                case 40:
+                    move(12, 1, -4);
+                    break; //下  
+            }
+        }
+
+        function start() {
+            arr = new Array(16);
+            update();
+            update();
+        }
+        start();
+    </script>
+</body>
+
+</html>

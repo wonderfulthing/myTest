@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>背景色渐变</title>
+    <style>
+        #container {
+            margin: 100px auto;
+            width: 400px;
+            height: 400px;
+        }
+
+        #content {
+            height: 400px;
+            /* <linear-gradient>：linear-gradient([ <point>, ]? <color-stop>[, <color-stop>]+);
+
+            <point>：[ left | right]? [ top | bottom]? || <angle>? <color-stop>：<color>[ <length>| <percentage>]? 
+            
+            <point>
+                left：
+                设置左边为渐变起点的横坐标值。
+                right：
+                设置右边为渐变起点的横坐标值。
+                top：
+                设置顶部为渐变起点的纵坐标值。
+                bottom：
+                设置底部为渐变起点的纵坐标值。
+            <angle>：
+                用角度值指定渐变的方向（或角度）。
+            <color-stop>：
+                指定渐变的起止颜色。
+            <color-stop>
+            <color>：
+                指定颜色。请参阅颜色值
+            <length>：
+                用长度值指定起止色位置。不允许负值
+            <percentage>：
+                用百分比指定起止色位置。
+            */
+            background-image: linear-gradient(to bottom,rgba(255,0,0,0.1),red);
+            /* 不加to需要 -webkit */
+            /* background-image: -webkit-linear-gradient(top,rgba(255,0,0,0.1),red); */
+            border-radius: 50%;
+            box-shadow: 0 10px 40px rgba(255, 0, 0, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="content">
+
+        </div>
+    </div>
+</body>
+
+</html>
