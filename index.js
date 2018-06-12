@@ -180,63 +180,71 @@
 //         console.log(event)
 // }  
 // 第一版
-Function.prototype.applyOne = function (context) {
-    // 首先要获取调用call的函数，用this可以获取
-    context.fn = this;
-    context.fn();
-    delete context.fn;
-}
-
-//简单写一个不带参数的demo
-var jawil = {
-    name: "jawil",
-    sayHello: function (age) {
-        console.log(this.name);
-    }
-};
-
-var lulin = {
-    name: "lulin",
-};
-
-//看看结果：
-jawil.sayHello.applyOne(lulin) //lulin
-
-// 定义的全局变量
-// console.log(global.a)
-
-// function f1() {　　　　
-//     n = 999;
-//     a = 'a'
+// Function.prototype.applyOne = function (context) {
+//     // 首先要获取调用call的函数，用this可以获取
+//     context.fn = this;
+//     context.fn();
+//     delete context.fn;
 // }
-// f1();
-// console.log(n, 'n'); // 999
-// console.log(global.a, 'a')
-// 闭包closure
-function f1() {　　　　
-    var n = 999;　　　　　　
-    function f2() {　　
-        n += 1　　　　
-        console.log(n);　　　　
-    }　　　　
-    return f2;　　
-}　　
-var result = f1();　　
-result(); // 999
-// 就像电路的闭环，在没有闭环的时候电路中没有电势差，但是一旦闭环完成，即函数内的返回值与外界发生了交互，便形成了闭环
-result(); // 1000
-function test(){
-    var age = 15;
-    function ttt(){
-        age +=10;
-        console.log(age)
-    }
-    return ttt;
-}
-var t1 = test();
-console.log(ttt)
-t1();
-t1();
-t1();
-var t2 = test();
-t2()
+
+// //简单写一个不带参数的demo
+// var jawil = {
+//     name: "jawil",
+//     sayHello: function (age) {
+//         console.log(this.name);
+//     }
+// };
+
+// var lulin = {
+//     name: "lulin",
+// };
+
+// //看看结果：
+// jawil.sayHello.applyOne(lulin) //lulin
+
+// // 定义的全局变量
+// // console.log(global.a)
+
+// // function f1() {　　　　
+// //     n = 999;
+// //     a = 'a'
+// // }
+// // f1();
+// // console.log(n, 'n'); // 999
+// // console.log(global.a, 'a')
+// // 闭包closure
+// function f1() {　　　　
+//     var n = 999;　　　　　　
+//     function f2() {　　
+//         n += 1　　　　
+//         console.log(n);　　　　
+//     }　　　　
+//     return f2;　　
+// }　　
+// var result = f1();　　
+// result(); // 999
+// // 就像电路的闭环，在没有闭环的时候电路中没有电势差，但是一旦闭环完成，即函数内的返回值与外界发生了交互，便形成了闭环
+// result(); // 1000
+// function test(){
+//     var age = 15;
+//     function ttt(){
+//         age +=10;
+//         console.log(age)
+//     }
+//     return ttt;
+// }
+// var t1 = test();
+// console.log(ttt)
+// t1();
+// t1();
+// t1();
+// var t2 = test();
+// t2()
+
+// foreach本质上还是一个同步for循环
+let arr = [1,2,3,4,5,6,,7,9,1,9,1,1,15,,54,84,8,48,4,458,48,48,,84,58,54,23]
+console.log('开始')
+arr.forEach((item,index,arr)=>{
+    console.log(item)
+})
+console.log('结束')

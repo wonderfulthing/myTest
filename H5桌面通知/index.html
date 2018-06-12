@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // if (!("Notification" in window)) {
+        //     alert("This browser does not support desktop notification");
+        // }
+        // Notification.requestPermission().then(function (permission) {
+        //     if (permission === 'granted') {
+        //         alert('用户允许通知');
+        //     } else if (permission === 'denied') {
+        //         alert('用户拒绝通知');
+        //     }
+        // });
+        // setTimeout(() => {
+        //     var notification = new Notification('这是一条测试信息', {
+        //         body:'这是通知的body',
+        //         tag:'id',
+        //         icon:'http://blog.gdfengshuo.com/images/avatar.jpg',
+        //         requestPermission:true,
+        //     })
+        // }, 2000);
+        Notification.requestPermission().then(function (permission) {
+            if (permission === 'granted') {
+                console.log(Notification)
+                var n = new Notification('状态更新提醒', {
+                    body: '你的朋友圈有3条新状态，快去查看吧',
+                    tag: 'linxin',
+                    icon: 'http://blog.gdfengshuo.com/images/avatar.jpg',
+                    data: {
+                        url: 'http://blog.gdfengshuo.com'
+                    },
+                    requireInteraction: true    
+                })
+
+                console.log(n)
+
+                /*setTimeout(function () {
+                    n.close()
+                }, 3000)*/
+            }
+        })
+    </script>
+</body>
+
+</html>
