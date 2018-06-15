@@ -242,9 +242,58 @@
 // t2()
 
 // foreach本质上还是一个同步for循环
-let arr = [1,2,3,4,5,6,,7,9,1,9,1,1,15,,54,84,8,48,4,458,48,48,,84,58,54,23]
-console.log('开始')
-arr.forEach((item,index,arr)=>{
-    console.log(item)
-})
-console.log('结束')
+// 跳出foreach语句不能够实现break，不支持这条语法，只能用for语句来实现break
+// let arr = [1,2,3,4,5,6,11,7,9,1,9,1,1,15,14,54,84,8,48,4,458,48,48,,84,58,54,23]
+// console.log('开始')
+// // arr.forEach((item,index,arr)=>{
+// //     console.log(item)
+// //     if(item==48) {
+// //         console.log('return')
+// //         return  false;
+// //     }
+// // })
+// for(let i = 0 ; i < arr.length; i ++){
+//     console.log(arr[i])
+//     if(arr[i]== 48){
+//         break
+//     }
+// }
+// console.log('结束')
+
+
+// var myObject = {
+//     foo: "bar",
+//     func: function() {
+//         var self = this;
+//         console.log("outer func:  this.foo = " + this.foo);
+//         console.log("outer func:  self.foo = " + self.foo);
+//         (function() {
+//             console.log("inner func:  this.foo = " + this.foo);
+//             console.log("inner func:  self.foo = " + self.foo);
+//         }());
+//     },
+//     one:{
+//         func:function(){
+//             console.log("one func:  this.foo = " + this.foo);
+//         }
+//     }
+// };
+// myObject.func();
+// myObject.one.func();
+// ***************************************不是太明白********************************************
+var a={},
+    b={key:'b'},
+    c={key:'c'};
+    // 下面效果相同，设置对象属性时，JavaScript会隐式地将参数值串联起来。
+    // 在这种情况下，由于b和c都是对象，它们都将被转换为“[object Object]”。
+    // 因此，a [b]和a [c]都等价于[“[object Object]”]，并且可以互换使用。
+    // 因此，设置或引用[c]与设置或引用[b]完全相同。
+    // b={key:'b'},
+    // c={key:'c'};
+    
+
+a[b]=123;
+a[c]=456;
+
+console.log(a[b]);
+// **********************************************************************************

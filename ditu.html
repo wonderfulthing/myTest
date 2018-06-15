@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地图详情</title>
+    <style>
+        #allmap {
+            height: 80vw;
+            width: 100%;
+        }
+
+        #r-result {
+            width: 100%;
+            font-size: 14px;
+        }
+    </style>
+    <script src="jquery.js"></script>
+    <!-- <script src="js/jquery-3.2.1.min.js"></script> -->
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=A1LU7iHS0avqQwPLAxbhKn0UYSQCuRVH"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.min.js"></script>
+</head>
+<script type="text/javascript" src="//api.map.baidu.com/api?ak=a70opKdwHQGu9Iknwli1HGLLZCjMIuZj&type=lite&v=1.0"></script>
+<style type="text/css">
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #container {
+        height: 50%
+    }
+</style>
+</head>
+
+<body>
+
+    <h3 style="text-align: center">地理位置定位</h3>
+    <div id="container"></div>
+    <!-- <div id="r-result">
+            城市名: <input id="cityName" type="text" style="width:100px; margin-right:10px;" />
+            <input type="button" value="查询" onclick="theLocation()" />
+        </div> -->
+    <p></p>
+</body>
+
+</html>
+
+<script>
+    //根据id来获取当前定位
+    var map = new BMap.Map("container");
+    var point = new BMap.Point(114.325629, 30.557636)
+    map.centerAndZoom(point, 12);
+    function myFun(result) {
+        var cityName = result.name
+        map.setCenter(cityName);
+        // alert("当前城市" + cityName)
+    }
+    var myCity = new BMap.LocalCity();
+    myCity.get(myFun)
+
+    //红点的创建
+    // map.centerAndZoom(point,11)
+    // var marker = new BMap.Marker(point)
+    // map.addOverlay(marker)
+    //出现地址
+
+
+    // setTimeout(function(){
+    //     map.setZoom(pt,14)
+    // // },2000)
+
+
+    var geoc = new BMap.Geocoder();
+    var lat = 0;
+    var lng = 0;
+    console.log(lat)
+    map.addEventListener("touchstart", function (e) {
+        var pt = e.point;
+        console.log(e.point)
+        lat = pt.lat;
+        lng = pt.lng;
+        console.log(lat)
+
+        // 设置层级
+        // map.centerAndZoom(pt, 18)
+        // 添加红点
+        // var marker = new BMap.Marker(pt)
+        //    map.addOverlay(marker)
+        map.centerAndZoom(new BMap.Point(lat, lng), 14);
+
+        console.log(pt.lat)
+
+        var icon = new BMap.Icon('img/21.png', new BMap.Size(20, 32), {
+            anchor: new BMap.Size(10, 30)
+        });
+
+
+        //实现拖拽
+        var mkr = new BMap.Marker(new BMap.Point(lat, lng), {
+            icon: icon,
+            enableDragging: true,
+            raiseOnDrag: true,
+        });
+        console.log(pt.lat)
+        map.addOverlay(mkr);
+
+
+        mkr.addEventListener('dragend', function (e) {
+
+            alert(e.point.lng + ', ' + e.point.lat);
+        })
+
+        geoc.getLocation(pt, function (rs) {
+            console.log(rs)
+            var addComp = rs.addressComponents;
+            // alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+
+            $('p').html(addComp.province + "- " + addComp.city + "-  " + addComp.district + "-  " + addComp.street + "- " + addComp.streetNumber)
+        })
+    })
+    console.log(lat)
+    console.log(lng)
+
+    $("p").click(function () {
+        // $(this).css("background","#f3f3f3");
+        // window.location.href = "index.html";
+        console.log('1233')
+        window.location.href = "locationsearch.html";
+    })
+
+</script>
