@@ -76,6 +76,9 @@
 
 			</div>
 		</div>
+		<div class="name1 name2" data-value="10">
+
+		</div>
 		<!-- <div class="div-1">
 			我是div1
 			<div class="div-1-1">
@@ -115,7 +118,9 @@
 		function test(event) {
 			console.dir($)
 		}
-
+		console.dir($('.name1.name2')[0],'jq')
+		let name = document.querySelector('.name1')
+		console.log(name.dataset.value)
 	</script>
 </body>
 

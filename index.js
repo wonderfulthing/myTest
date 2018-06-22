@@ -281,19 +281,58 @@
 // myObject.func();
 // myObject.one.func();
 // ***************************************不是太明白********************************************
-var a={},
-    b={key:'b'},
-    c={key:'c'};
-    // 下面效果相同，设置对象属性时，JavaScript会隐式地将参数值串联起来。
-    // 在这种情况下，由于b和c都是对象，它们都将被转换为“[object Object]”。
-    // 因此，a [b]和a [c]都等价于[“[object Object]”]，并且可以互换使用。
-    // 因此，设置或引用[c]与设置或引用[b]完全相同。
-    // b={key:'b'},
-    // c={key:'c'};
+// var a={},
+//     b={key:'b'},
+//     c={key:'c'};
+//     // 下面效果相同，设置对象属性时，JavaScript会隐式地将参数值串联起来。
+//     // 在这种情况下，由于b和c都是对象，它们都将被转换为“[object Object]”。
+//     // 因此，a [b]和a [c]都等价于[“[object Object]”]，并且可以互换使用。
+//     // 因此，设置或引用[c]与设置或引用[b]完全相同。
+//     // b={key:'b'},
+//     // c={key:'c'};
     
 
-a[b]=123;
-a[c]=456;
+// a[b]=123;
+// a[c]=456;
 
-console.log(a[b]);
+// console.log(a[b]);
 // **********************************************************************************
+// console.log(new Date("2018-06-14T09:01:21.000+0000").format('YYYY-MM-DD hh:mm:ss'))
+// // Date的格式化函数，便于格式化日期
+// Date.prototype.format = function (format) {
+//     if(isNaN(this.getMonth())){
+//       return null;
+//     }
+//     let o = {
+//       "M+": this.getMonth() + 1,
+//       "D+": this.getDate(),
+//       "h+": this.getHours(),
+//       "m+": this.getMinutes(),
+//       "s+": this.getSeconds(),
+//       "q+": Math.floor((this.getMonth() + 3) / 3),
+//       "S": this.getMilliseconds()
+//     };
+//     if (/(Y+)/.test(format)) {
+//       format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+//     }
+//     for (let k in o) {
+//       if (new RegExp("(" + k + ")").test(format)) {
+//         format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+//       }
+//     }
+//     return format;
+//   };
+
+
+
+// *****************关于this的测试********************
+Function.prototype.method = function (name, func){
+  this.prototype[name] = func;
+  console.log(this,'Function内的this')
+  return this;
+}
+Number.method('integer',function(){
+  console.log(this,'number内的this')
+  return Math[this < 0 ? 'ceil' : 'floor'](this);
+})
+console.log((-10/3).integer(),'预测结果为-3');
