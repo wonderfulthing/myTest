@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        var xml = new XMLHttpRequest();
+        xml.open('get','http://localhost:8081/role/list')
+        xml.onreadystatechange = function(){
+            console.log(xml.readyState)
+            if(xml.readyState == 4){
+                console.dir(xml)
+                console.log(xml.responseXML,'xml')
+                console.log(xml.responseText,'text')
+            }
+        }
+        xml.send();
+    </script>
+</body>
+</html>

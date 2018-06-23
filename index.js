@@ -336,3 +336,16 @@ Number.method('integer',function(){
   return Math[this < 0 ? 'ceil' : 'floor'](this);
 })
 console.log((-10/3).integer(),'预测结果为-3');
+
+name = '"a","b"';
+console.log(name.match(/"([^"]*)"/g))
+
+name.replace(/"([^"]*)"/g, "$1");
+console.log(name)
+
+
+// let test = '80px'
+// let l = test.replace(/\px/g, '');
+// console.log(l,typeof l)
+// let r = +test.replace(/\px/g, '');
+// console.log(r,typeof r)
