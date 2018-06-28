@@ -326,22 +326,22 @@
 
 
 // *****************关于this的测试********************
-Function.prototype.method = function (name, func){
-  this.prototype[name] = func;
-  console.log(this,'Function内的this')
-  return this;
-}
-Number.method('integer',function(){
-  console.log(this,'number内的this')
-  return Math[this < 0 ? 'ceil' : 'floor'](this);
-})
-console.log((-10/3).integer(),'预测结果为-3');
+// Function.prototype.method = function (name, func){
+//   this.prototype[name] = func;
+//   console.log(this,'Function内的this')
+//   return this;
+// }
+// Number.method('integer',function(){
+//   console.log(this,'number内的this')
+//   return Math[this < 0 ? 'ceil' : 'floor'](this);
+// })
+// console.log((-10/3).integer(),'预测结果为-3');
 
-name = '"a","b"';
-console.log(name.match(/"([^"]*)"/g))
+// name = '"a","b"';
+// console.log(name.match(/"([^"]*)"/g))
 
-name.replace(/"([^"]*)"/g, "$1");
-console.log(name)
+// name.replace(/"([^"]*)"/g, "$1");
+// console.log(name)
 
 
 // let test = '80px'
@@ -349,3 +349,6 @@ console.log(name)
 // console.log(l,typeof l)
 // let r = +test.replace(/\px/g, '');
 // console.log(r,typeof r)
+
+
+console.log("100" > "2")

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .div2{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+        .div3{
+            width: calc(100% - 200px);
+            height: 200px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <!-- removeEventListener失效，找到解决方法 -->
+    <div class="div1">
+
+    </div>
+    <div class="div2">
+
+    </div>
+    <div class="div3">
+
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        let div1 = document.querySelector('.div1');
+        let div2 = document.querySelector('.div2');
+        let test = function (name){
+            let aa = name || 'noname'
+            console.log(aa)
+        }
+        div1.addEventListener('click',test)
+        // div1.onclick = test
+        div2.addEventListener('click',()=>{
+            console.log('ssss')
+            div1.removeEventListener('click',test)
+        })
+        for(let i = 0 ; i < 10 ; i++){
+            i++
+            console.log(i)
+        }
+        // $(div1).click(function(){
+        //     console.log('aaaa')
+        // })
+        // $(div2).click(function(){
+        //     $(div1).unbind('click')
+        // })
+    </script>
+</body>
+</html>
